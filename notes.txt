@@ -1,0 +1,7 @@
+Notes:
+
+Sean- Compare the approaches/ models. Just binary now but will evaluate the performance/ how it learns
+
+Jon- Look into how to make a network that predicts magnitude. Get some code down and mention that it's the next step in the presentation
+
+Haran- Research new indicators to incllude in model
