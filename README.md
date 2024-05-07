@@ -25,6 +25,17 @@ The third model we trained on our S&P 500 stock price data was an LSTM. Long Sho
 
 **The RNN outperformed the advanced LSTM model due to the structure of the data**. For each prediction, we only looked at a certain number of days or “back candles” in the past. We found that the optimal number of days to look back was 15 or three weeks. The number of days is considered short-term, thus the RNN predicted the price better because it handles short-term dependencies better.<br> 
 
+## Indicators Used as Features
+### Simple Moving Average
+​​​​![Simple Moving Average](images/sma50)
+
+### Relative Strength Index
+​​​​![Relative Strength Index](images/rsi14)
+
+### Bollinger Bands
+​​​​![Bollinger Bands](images/bollingerbands)
+
+
 # Second Approach: Predicting the Magnitude of Change for a Single Stock Using Sentiment Analysis
 ## Introduction
 Utilizing a combination of sentiment analysis and traditional financial indicators, this approach aims to predict the magnitude of price changes in Apple's stock. Sentiment analysis, which evaluates the tone and context of text data—specifically, news headlines in this case—provides insights into the general market sentiment at any given time. By integrating these sentiment scores with quantitative financial data such as the Relative Strength Index (RSI) and Exponential Moving Averages (EMA), we seek to construct a nuanced model that can better anticipate stock price fluctuations.<br><br>
@@ -160,23 +171,19 @@ This MSE provides a quantitative measure of the model's performance and helps us
 ### Visualizing Predictions
 Prior to adding the Apple sentiment analysis data to our model, the results were very limited in the magnitude they could predict. While the Apple stock price bounced between high magnitudes and low magnitudes, the predictions for the Apple stock price always stayed around baselines (0.5 or 0 → depending on the values it was MinMaxScaled on).
 
+​​​​![First Output Example](images/worsevol)
 
 Note: the x-axis is the number of days market days, and the y-axis is the scaled values for the Apple stock price between 0 and 1.
 
 After adding sentiment analysis to our LSTM model, the magnitudes increase substantially, but not to the degree of the actual Apple stock price. The figure also below displays the negative effects of the sentiment analysis data. The articles written about Apple tend the model toward more negative magnitudes. In other words, the sentiment analysis is too harsh on the predicted stock price when considering the lexicon of articles it was made on.
 
+​​​​![Improved Output Example](images/bettervol)
 
 Note: the x-axis is the number of days market days, and the y-axis is the scaled values for the Apple stock price between -1 and 1.
 
-### ADD PLOT HERE:
-
 The plot shows the comparison between actual price changes and the predictions made by the LSTM model. Ideally, the green prediction line should closely follow the black actual line. Deviations represent areas where the model did not perform optimally, providing insights into specific conditions or periods where the model may need further tuning or additional features.
 
-## Discussion of Results
-
-#### Add discussion here
-
-## Conclusion
+## Results and Conclusion
 **Sentiment Analysis Findings:** Our exploration into using sentiment analysis combined with financial indicators to predict the magnitude of Apple stock price changes has yielded insightful results. By integrating sentiment scores from news headlines with traditional technical indicators like RSI and EMAs, we developed an LSTM model capable of capturing both market trends and the impact of public perception.
 
 **Performance Overview:** While the model demonstrated a promising ability to predict stock price movements, the Mean Squared Error (MSE) highlighted areas where the predictions could be improved. The visual comparison of predicted versus actual price changes provided a clear illustration of the model's performance, showing that while the model could generally track the direction of price movements, it occasionally struggled with the magnitude and timing of these changes.
