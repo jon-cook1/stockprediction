@@ -36,7 +36,7 @@ The third model we trained on our S&P 500 stock price data was an LSTM. `Long Sh
 ​​​​![Bollinger Bands](images/bollingerbands.png)
 
 
-# Second Approach: Predicting the Magnitude of Change for a Single Stock Using Sentiment Analysis
+# Second Approach: Using Sentiment Analysis to predict the Magnitude of Change for a Single Stock (AAPL)
 ## Introduction
 Utilizing a combination of sentiment analysis and traditional financial indicators, this approach aims to predict the magnitude of price changes in Apple's stock. Sentiment analysis, which evaluates the tone and context of text data—specifically, news headlines in this case—provides insights into the general market sentiment at any given time. By integrating these sentiment scores with quantitative financial data such as the `Relative Strength Index (RSI)` and `Exponential Moving Averages (EMA)`, we seek to construct a nuanced model that can better anticipate stock price fluctuations.<br><br>
 
