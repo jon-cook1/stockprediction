@@ -175,7 +175,7 @@ The plot shows the comparison between actual price changes and the predictions m
 
 **Technical Challenges:** Several technical challenges were encountered during the project, including issues with data alignment, the handling of non-uniform sentiment data, and the inherent complexity of financial time series prediction. These challenges sometimes impacted the accuracy and reliability of our predictions.
 
-### Overall Project Reflections
+## Overall Reflections
 This project provided a valuable comparative look at different machine learning techniques applied to the complex problem of stock market prediction. By examining various models, from simple feed-forward networks to more complex LSTMs, we gained a deeper understanding of how different architectures and features influence model performance.
 
 **Lessons Learned:** One of the key lessons learned was the critical importance of feature selection and data preprocessing. The choice and preparation of features significantly affected the models' ability to learn and make accurate predictions. Additionally, the project reinforced the idea that more complex models, like LSTMs, require careful tuning and extensive training to fully realize their potential.
