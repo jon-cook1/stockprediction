@@ -27,13 +27,13 @@ The third model we trained on our S&P 500 stock price data was an LSTM. Long Sho
 
 ## Indicators Used as Features
 ### Simple Moving Average
-​​​​![Simple Moving Average](images/sma50)
+​​​​![Simple Moving Average](images/sma50.png)
 
 ### Relative Strength Index
-​​​​![Relative Strength Index](images/rsi14)
+​​​​![Relative Strength Index](images/rsi14.png)
 
 ### Bollinger Bands
-​​​​![Bollinger Bands](images/bollingerbands)
+​​​​![Bollinger Bands](images/bollingerbands.png)
 
 
 # Second Approach: Predicting the Magnitude of Change for a Single Stock Using Sentiment Analysis
@@ -171,13 +171,13 @@ This MSE provides a quantitative measure of the model's performance and helps us
 ### Visualizing Predictions
 Prior to adding the Apple sentiment analysis data to our model, the results were very limited in the magnitude they could predict. While the Apple stock price bounced between high magnitudes and low magnitudes, the predictions for the Apple stock price always stayed around baselines (0.5 or 0 → depending on the values it was MinMaxScaled on).
 
-​​​​![First Output Example](images/worsevol)
+​​​​![First Output Example](images/worsevol.png)
 
 Note: the x-axis is the number of days market days, and the y-axis is the scaled values for the Apple stock price between 0 and 1.
 
 After adding sentiment analysis to our LSTM model, the magnitudes increase substantially, but not to the degree of the actual Apple stock price. The figure also below displays the negative effects of the sentiment analysis data. The articles written about Apple tend the model toward more negative magnitudes. In other words, the sentiment analysis is too harsh on the predicted stock price when considering the lexicon of articles it was made on.
 
-​​​​![Improved Output Example](images/bettervol)
+​​​​![Improved Output Example](images/bettervol.png)
 
 Note: the x-axis is the number of days market days, and the y-axis is the scaled values for the Apple stock price between -1 and 1.
 
