@@ -130,7 +130,7 @@ The LSTM model architecture is designed to effectively process sequences of data
 <li>Output Layer: Following the LSTM layer, a dense output layer with a linear activation function maps the LSTM outputs to our target variable—the predicted price change. This layer essentially converts the learned features into a prediction.</li>
 The LSTM model's configuration is implemented using Keras, a high-level neural networks API. Here's the code for setting up the model:
 
-Training Process
+### Training Process
 Training an LSTM involves several considerations to ensure that the model not only learns well but also generalizes effectively to new, unseen data:
 
 <li>Optimizer: We use the Adam optimizer, which is an extension to stochastic gradient descent that has been proven effective for training deep learning models.</li>
