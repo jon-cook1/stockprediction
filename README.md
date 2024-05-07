@@ -166,6 +166,25 @@ The plot shows the comparison between actual price changes and the predictions m
 
 ## Discussion of Results
 
+#### Add discussion here
+
+## Conclusion
+**Sentiment Analysis Findings:** Our exploration into using sentiment analysis combined with financial indicators to predict the magnitude of Apple stock price changes has yielded insightful results. By integrating sentiment scores from news headlines with traditional technical indicators like RSI and EMAs, we developed an LSTM model capable of capturing both market trends and the impact of public perception.
+
+**Performance Overview:** While the model demonstrated a promising ability to predict stock price movements, the Mean Squared Error (MSE) highlighted areas where the predictions could be improved. The visual comparison of predicted versus actual price changes provided a clear illustration of the model's performance, showing that while the model could generally track the direction of price movements, it occasionally struggled with the magnitude and timing of these changes.
+
+**Technical Challenges:** Several technical challenges were encountered during the project, including issues with data alignment, the handling of non-uniform sentiment data, and the inherent complexity of financial time series prediction. These challenges sometimes impacted the accuracy and reliability of our predictions.
+
+### Overall Project Reflections
+This project provided a valuable comparative look at different machine learning techniques applied to the complex problem of stock market prediction. By examining various models, from simple feed-forward networks to more complex LSTMs, we gained a deeper understanding of how different architectures and features influence model performance.
+
+**Lessons Learned:** One of the key lessons learned was the critical importance of feature selection and data preprocessing. The choice and preparation of features significantly affected the models' ability to learn and make accurate predictions. Additionally, the project reinforced the idea that more complex models, like LSTMs, require careful tuning and extensive training to fully realize their potential.
+
+Future Directions: Future research could explore integrating a broader range of sentiment sources, such as social media platforms, which might provide more comprehensive sentiment data. Additionally, experimenting with hybrid models that combine elements of different neural network architectures could offer improvements in both accuracy and generalization.
+
+In conclusion, this project has not only advanced our understanding of using machine learning for stock price prediction but also highlighted the intricate interplay between market data and public sentiment. Despite the challenges faced, the insights gained from comparing different machine learning approaches have been invaluable. These findings pave the way for further research and experimentation, potentially leading to more sophisticated and accurate predictive models in the finance sector.
+
+
 
 
 
