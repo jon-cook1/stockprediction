@@ -136,7 +136,7 @@ Training an LSTM involves several considerations to ensure that the model not on
 <li>Optimizer: We use the Adam optimizer, which is an extension to stochastic gradient descent that has been proven effective for training deep learning models.</li>
 <li>Loss Function: The mean squared error (MSE) loss function is used as it directly penalizes the model for large discrepancies between predicted and actual values, making it ideal for regression tasks like ours.</li>
 <li>Epochs and Batches: The model is trained over 30 epochs with a batch size of 15. This setup helps in stabilizing the training process by allowing the model to update its weights iteratively on smaller subsets of the data, reducing the risk of overfitting.</li>
-V<li>alidation Split: We allocate 10% of the training data for validation. This practice helps monitor the model’s performance on unseen data during training, providing insights into whether the model is learning general patterns rather than memorizing the training set.</li>
+<li>Validation Split: We allocate 10% of the training data for validation. This practice helps monitor the model’s performance on unseen data during training, providing insights into whether the model is learning general patterns rather than memorizing the training set.</li>
 Here's the code snippet for the training process:
 
 ### Model Evaluation
