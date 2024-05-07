@@ -119,4 +119,53 @@ During data preparation, we encountered challenges such as handling missing valu
 
 By detailing the feature engineering and data preparation process, we set the stage for training a sophisticated machine learning model that incorporates both traditional financial indicators and modern sentiment analysis. This blend of features is designed to capture a wide array of influences on stock prices, making our model both robust and insightful.
 
+## LSTM Model Training
+Having engineered our features and prepared the dataset, we proceed to the core of our predictive analysis: training the Long Short-Term Memory (LSTM) model. LSTMs are particularly suited for time-series data like stock prices because they can capture long-term dependencies and patterns that simpler models might miss. This section details the technical aspects of setting up and training the LSTM model for predicting Apple stock price movements.
+
+### Model Architecture
+The LSTM model architecture is designed to effectively process sequences of data, capturing the temporal dynamics of stock prices and sentiment indicators. Our model consists of several key components:
+
+<li>Input Layer: The input layer is configured to accept sequences of data points. Each sequence corresponds to a fixed window of trading days (15 days in our case), encompassing features like RSI, EMAs, and sentiment scores.</li>
+<li>LSTM Layer: We employ an LSTM layer with 150 units. This layer is the heart of our model, responsible for learning from the historical data's temporal patterns. The high number of units allows the model to capture complex patterns in the data, which is crucial for accurate predictions.</li>
+<li>Output Layer: Following the LSTM layer, a dense output layer with a linear activation function maps the LSTM outputs to our target variable—the predicted price change. This layer essentially converts the learned features into a prediction.</li>
+The LSTM model's configuration is implemented using Keras, a high-level neural networks API. Here's the code for setting up the model:
+
+Training Process
+Training an LSTM involves several considerations to ensure that the model not only learns well but also generalizes effectively to new, unseen data:
+
+<li>Optimizer: We use the Adam optimizer, which is an extension to stochastic gradient descent that has been proven effective for training deep learning models.</li>
+<li>Loss Function: The mean squared error (MSE) loss function is used as it directly penalizes the model for large discrepancies between predicted and actual values, making it ideal for regression tasks like ours.</li>
+<li>Epochs and Batches: The model is trained over 30 epochs with a batch size of 15. This setup helps in stabilizing the training process by allowing the model to update its weights iteratively on smaller subsets of the data, reducing the risk of overfitting.</li>
+V<li>alidation Split: We allocate 10% of the training data for validation. This practice helps monitor the model’s performance on unseen data during training, providing insights into whether the model is learning general patterns rather than memorizing the training set.</li>
+Here's the code snippet for the training process:
+
+### Model Evaluation
+Post-training, the model's performance is evaluated on the test set, which was not seen by the model during the training phase. This evaluation provides a realistic insight into how the model might perform in a real-world scenario where exact future prices are not known.
+
+### Challenges and Solutions
+Training deep learning models, particularly LSTMs, poses several challenges such as choosing the right number of layers, handling overfitting, and tuning hyperparameters. To address these, we experimented with different model configurations and employed techniques like dropout layers and early stopping, though these specific techniques are not shown in the code provided above.
+
+By detailing the LSTM model training process, we illuminate the technical depth of our approach in tackling the complex problem of stock price prediction using machine learning. This rigorous methodology ensures that the model is robust, capable, and ready to be deployed for practical forecasting tasks.
+
+## Results and Visualization
+After completing the training of our LSTM model, we now turn to analyzing its performance. This section provides an overview of the results obtained from our model and visualizes these results to better understand how well our model predicts Apple stock price movements.
+
+### Model Performance Evaluation
+The primary metric used to evaluate our model is the Mean Squared Error (MSE). MSE measures the average of the squares of the errors—that is, the average squared difference between the estimated values and the actual value. A lower MSE indicates a better fit of the model to the data.
+
+<li>MSE Calculation: Using the test data set aside during the data splitting phase, we compute the MSE to assess how accurately the model predicts the magnitude of price changes. Here's the code used to calculate MSE:</li>
+
+This MSE provides a quantitative measure of the model's performance and helps us understand the effectiveness of the LSTM in capturing and predicting the complex patterns in stock price movements influenced by market sentiment and historical data.
+
+### Visualizing Predictions
+Visualizations are an integral part of understanding and communicating the model's performance. By plotting the predicted values against the actual values, we can visually assess how well the model tracks the true stock price movements.
+
+### ADD PLOT HERE:
+
+The plot shows the comparison between actual price changes and the predictions made by the LSTM model. Ideally, the green prediction line should closely follow the black actual line. Deviations represent areas where the model did not perform optimally, providing insights into specific conditions or periods where the model may need further tuning or additional features.
+
+## Discussion of Results
+
+
+
 
