@@ -45,7 +45,7 @@ The rationale behind combining these diverse datasets stems from the hypothesis 
 In an effort to enhance our stock price prediction model, we incorporated sentiment analysis into our data framework. Sentiment analysis, in the context of this project, involves examining the tone and emotional context of news headlines related to Apple Inc. This method provides a quantitative measure of the sentiment conveyed by the media, which can have significant influence on investor perceptions and market movements.<br>
 
 ### Data Sources
-The sentiment data used in this analysis was extracted from a curated dataset of news headlines that span a specific period, aligned with the stock price data for Apple from Yahoo Finance. This approach ensures that each piece of sentiment data corresponds accurately to market data on a day-to-day basis.
+The sentiment data used in this analysis was extracted from a curated dataset of news headlines (Kaggle), aligned with the stock price data for Apple from Yahoo Finance. This approach ensures that each piece of sentiment data corresponds accurately to market data on a day-to-day basis.
 
 ### Understanding Sentiment Scores
 The sentiment analysis tool we employed assigns a `compound score` to each headline, which is a metric that quantifies the sentiment on a scale from -1 (very negative) to +1 (very positive). Neutral news would score around 0. These scores are calculated using algorithms that analyze the language and context of each headline.
