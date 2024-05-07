@@ -73,7 +73,9 @@ The primary challenge in merging these datasets is ensuring that each entry of s
 
 ### Standardizing Date Formats
 The first step in our alignment process involves standardizing the date formats across both datasets. In our sentiment analysis dataset, dates were initially formatted inconsistently. To address this, we used the following code snippet to convert all dates to a uniform format:
-
+```python
+apple['Date'] = pd.to_datetime(apple['Date'], format='%d-%m-%y').dt.strftime('%Y-%m-%d')
+```
 This ensures that both datasets use the same date format, facilitating an accurate merge.
 
 ### Merging Datasets
@@ -81,7 +83,11 @@ This ensures that both datasets use the same date format, facilitating an accura
 Once the dates were standardized, we proceeded to merge the datasets. This step is crucial as it combines the sentiment scores with the corresponding stock data, allowing our models to analyze the potential impacts of public sentiment on stock prices concurrently with financial indicators.
 
 #### The merging was executed using the following Python code:
-
+```python
+data['Date'] = pd.to_datetime(data['Date'])
+apple['Date'] = pd.to_datetime(apple['Date'])
+merged_data = pd.merge(apple_filtered, data, on='Date', how='inner')
+```
 This code snippet uses the pd.merge function from pandas, which joins the datasets on the 'Date' column. We chose an 'inner' join to ensure that only dates present in both datasets are included, eliminating any days where either stock data or sentiment data is missing.
 
 ### Challenges and Solutions
@@ -117,11 +123,18 @@ This integration allows our model to consider how public sentiment might impact 
 
 ### Preparing the Target Variable
 For our predictive model, we chose to forecast the actual change in stock price, rather than simply predicting whether the stock price would go up or down. The target variable is thus defined as the difference between the next day’s closing price and the current day’s opening price:
+```python
+data['Target'] = data['Adj Close'].shift(-1) - data['Open']
+```
 
 This formulation of the target variable enables us to predict the magnitude of the price change, providing more detailed insights for trading strategies.
 
 ### Data Scaling and Splitting
 To ensure that all input features contribute equally to the model's predictions, we scale the data using MinMaxScaler, which normalizes features to a range of -1 to 1:
+```python
+sc = MinMaxScaler(feature_range=(-1, 1))
+data_scaled = sc.fit_transform(data[['RSI', 'EMAF', 'EMAM', 'EMAS', 'compound']])
+```
 
 Finally, the dataset is split into training and testing sets to evaluate the model’s performance on unseen data. This is done to test the model's ability to generalize to new data, which is critical for real-world applications.
 
@@ -140,6 +153,17 @@ The LSTM model architecture is designed to effectively process sequences of data
 <li>LSTM Layer: We employ an LSTM layer with 150 units. This layer is the heart of our model, responsible for learning from the historical data's temporal patterns. The high number of units allows the model to capture complex patterns in the data, which is crucial for accurate predictions.</li>
 <li>Output Layer: Following the LSTM layer, a dense output layer with a linear activation function maps the LSTM outputs to our target variable—the predicted price change. This layer essentially converts the learned features into a prediction.</li>
 The LSTM model's configuration is implemented using Keras, a high-level neural networks API. Here's the code for setting up the model:
+```python
+from keras.models import Model
+from keras.layers import Input, LSTM, Dense, Activation
+
+lstm_input = Input(shape=(15, 10), name='lstm_input')  # 15 days, 10 features per day
+lstm_layer = LSTM(150, name='first_lstm_layer')(lstm_input)
+output_layer = Dense(1, activation='linear', name='output_layer')(lstm_layer)
+
+model = Model(inputs=lstm_input, outputs=output_layer)
+model.compile(optimizer='adam', loss='mean_squared_error')
+```
 
 ### Training Process
 Training an LSTM involves several considerations to ensure that the model not only learns well but also generalizes effectively to new, unseen data:
@@ -149,6 +173,9 @@ Training an LSTM involves several considerations to ensure that the model not on
 <li>Epochs and Batches: The model is trained over 30 epochs with a batch size of 15. This setup helps in stabilizing the training process by allowing the model to update its weights iteratively on smaller subsets of the data, reducing the risk of overfitting.</li>
 <li>Validation Split: We allocate 10% of the training data for validation. This practice helps monitor the model’s performance on unseen data during training, providing insights into whether the model is learning general patterns rather than memorizing the training set.</li>
 Here's the code snippet for the training process:
+```python
+history = model.fit(x=X_train, y=y_train, batch_size=15, epochs=30, validation_split=0.1)
+```
 
 ### Model Evaluation
 Post-training, the model's performance is evaluated on the test set, which was not seen by the model during the training phase. This evaluation provides a realistic insight into how the model might perform in a real-world scenario where exact future prices are not known.
@@ -165,6 +192,14 @@ After completing the training of our LSTM model, we now turn to analyzing its pe
 The primary metric used to evaluate our model is the Mean Squared Error (MSE). MSE measures the average of the squares of the errors—that is, the average squared difference between the estimated values and the actual value. A lower MSE indicates a better fit of the model to the data.
 
 <li>MSE Calculation: Using the test data set aside during the data splitting phase, we compute the MSE to assess how accurately the model predicts the magnitude of price changes. Here's the code used to calculate MSE:</li>
+
+```python
+from sklearn.metrics import mean_squared_error
+
+y_pred = model.predict(X_test)
+mse = mean_squared_error(y_test, y_pred)
+print("Mean Squared Error:", mse)
+```
 
 This MSE provides a quantitative measure of the model's performance and helps us understand the effectiveness of the LSTM in capturing and predicting the complex patterns in stock price movements influenced by market sentiment and historical data.
 
