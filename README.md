@@ -1,4 +1,4 @@
-S&P 500 prediction model created by Sean McDermott, Haran Eiger, and Jon Cook.
+S&P 500 and AAPL stock prediction model created by Sean McDermott, Haran Eiger, and Jon Cook.
 
 Required data sets:
 > https://pypi.org/project/yfinance/
