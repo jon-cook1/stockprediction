@@ -1,10 +1,6 @@
 S&P 500 prediction model created by Sean McDermott, Haran Eiger, and Jon Cook.
 
-To run, clone the repository and run 
-> pip install -r requirements.txt
-
-Then download the required data sets:
->
->
->
+Required data set:
+> https://pypi.org/project/yfinance/
+> https://www.kaggle.com/datasets/lorilaz/apple-news-headline-sentiment-and-stock-info 
 
