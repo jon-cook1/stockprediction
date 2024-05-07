@@ -158,7 +158,15 @@ The primary metric used to evaluate our model is the Mean Squared Error (MSE). M
 This MSE provides a quantitative measure of the model's performance and helps us understand the effectiveness of the LSTM in capturing and predicting the complex patterns in stock price movements influenced by market sentiment and historical data.
 
 ### Visualizing Predictions
-Visualizations are an integral part of understanding and communicating the model's performance. By plotting the predicted values against the actual values, we can visually assess how well the model tracks the true stock price movements.
+Prior to adding the Apple sentiment analysis data to our model, the results were very limited in the magnitude they could predict. While the Apple stock price bounced between high magnitudes and low magnitudes, the predictions for the Apple stock price always stayed around baselines (0.5 or 0 → depending on the values it was MinMaxScaled on).
+
+
+Note: the x-axis is the number of days market days, and the y-axis is the scaled values for the Apple stock price between 0 and 1.
+
+After adding sentiment analysis to our LSTM model, the magnitudes increase substantially, but not to the degree of the actual Apple stock price. The figure also below displays the negative effects of the sentiment analysis data. The articles written about Apple tend the model toward more negative magnitudes. In other words, the sentiment analysis is too harsh on the predicted stock price when considering the lexicon of articles it was made on.
+
+
+Note: the x-axis is the number of days market days, and the y-axis is the scaled values for the Apple stock price between -1 and 1.
 
 ### ADD PLOT HERE:
 
@@ -183,8 +191,3 @@ This project provided a valuable comparative look at different machine learning 
 **Future Directions:** Future research could explore integrating a broader range of sentiment sources, such as social media platforms, which might provide more comprehensive sentiment data. Additionally, experimenting with hybrid models that combine elements of different neural network architectures could offer improvements in both accuracy and generalization.
 
 In conclusion, this project has not only advanced our understanding of using machine learning for stock price prediction but also highlighted the intricate interplay between market data and public sentiment. Despite the challenges faced, the insights gained from comparing different machine learning approaches have been invaluable. These findings pave the way for further research and experimentation, potentially leading to more sophisticated and accurate predictive models in the finance sector.
-
-
-
-
-
