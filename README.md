@@ -109,11 +109,11 @@ In this phase of our analysis, we focus on preparing and enriching our data to b
 ### Adding Financial Indicators
 The first step in our feature engineering process involves calculating key financial indicators that are known to influence stock prices:
 
-<li>Relative Strength Index (RSI): This momentum oscillator measures the speed and change of price movements. It helps identify overbought or oversold conditions in the trading of an asset.
-<li>Exponential Moving Averages (EMA): We use three different EMAs to capture trends over various time frames:
-<ul><li>Fast EMA (20 days): Reflects short-term price trends.</li>
-<li>Medium EMA (100 days): Captures medium-term trends.</li>
-<li>Slow EMA (150 days): Indicates long-term market trends.</li></ul>
+<li>`Relative Strength Index (RSI)`: This momentum oscillator measures the speed and change of price movements. It helps identify overbought or oversold conditions in the trading of an asset.
+<li>`Exponential Moving Averages (EMA)`: We use three different EMAs to capture trends over various time frames:
+<ul><li>`Fast EMA (20 days)`: Reflects short-term price trends.</li>
+<li>`Medium EMA (100 days)`: Captures medium-term trends.</li>
+<li>`Slow EMA (150 days)`: Indicates long-term market trends.</li></ul>
 
 ### Integrating Sentiment Analysis
 Adding a `compound variable` from sentiment analysis provides a unique dimension to our dataset:
