@@ -153,6 +153,7 @@ The LSTM model architecture is designed to effectively process sequences of data
 <li>LSTM Layer: We employ an LSTM layer with 150 units. This layer is the heart of our model, responsible for learning from the historical data's temporal patterns. The high number of units allows the model to capture complex patterns in the data, which is crucial for accurate predictions.</li>
 <li>Output Layer: Following the LSTM layer, a dense output layer with a linear activation function maps the LSTM outputs to our target variable—the predicted price change. This layer essentially converts the learned features into a prediction.</li>
 The LSTM model's configuration is implemented using Keras, a high-level neural networks API. Here's the code for setting up the model:
+
 ```python
 from keras.models import Model
 from keras.layers import Input, LSTM, Dense, Activation
@@ -173,6 +174,7 @@ Training an LSTM involves several considerations to ensure that the model not on
 <li>Epochs and Batches: The model is trained over 30 epochs with a batch size of 15. This setup helps in stabilizing the training process by allowing the model to update its weights iteratively on smaller subsets of the data, reducing the risk of overfitting.</li>
 <li>Validation Split: We allocate 10% of the training data for validation. This practice helps monitor the model’s performance on unseen data during training, providing insights into whether the model is learning general patterns rather than memorizing the training set.</li>
 Here's the code snippet for the training process:
+
 ```python
 history = model.fit(x=X_train, y=y_train, batch_size=15, epochs=30, validation_split=0.1)
 ```
