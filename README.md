@@ -26,10 +26,97 @@ The third model we trained on our S&P 500 stock price data was an LSTM. Long Sho
 **The RNN outperformed the advanced LSTM model due to the structure of the data**. For each prediction, we only looked at a certain number of days or “back candles” in the past. We found that the optimal number of days to look back was 15 or three weeks. The number of days is considered short-term, thus the RNN predicted the price better because it handles short-term dependencies better.<br> 
 
 # Second Approach: Predicting the Magnitude of Change for a Single Stock Using Sentiment Analysis
-### Introduction
+## Introduction
 Utilizing a combination of sentiment analysis and traditional financial indicators, this approach aims to predict the magnitude of price changes in Apple's stock. Sentiment analysis, which evaluates the tone and context of text data—specifically, news headlines in this case—provides insights into the general market sentiment at any given time. By integrating these sentiment scores with quantitative financial data such as the Relative Strength Index (RSI) and Exponential Moving Averages (EMA), we seek to construct a nuanced model that can better anticipate stock price fluctuations.<br><br>
 
 The rationale behind combining these diverse datasets stems from the hypothesis that market sentiment can often precede or amplify market movements, particularly in a company as prominent as Apple. News and public perception can significantly influence investor behavior, thereby affecting stock prices. Our approach leverages historical data from Yahoo Finance and sentiment data derived from news headlines, aligning them by date to create a robust dataset for our analysis.<br>
-### Apple Sentiment Analysis Data
+## Apple Sentiment Analysis Data
+In an effort to enhance our stock price prediction model, we incorporated sentiment analysis into our data framework. Sentiment analysis, in the context of this project, involves examining the tone and emotional context of news headlines related to Apple Inc. This method provides a quantitative measure of the sentiment conveyed by the media, which can have significant influence on investor perceptions and market movements.<br>
+
+### Data Sources
+The sentiment data used in this analysis was extracted from a curated dataset of news headlines that span a specific period, aligned with the stock price data for Apple from Yahoo Finance. This approach ensures that each piece of sentiment data corresponds accurately to market data on a day-to-day basis.
+
+### Understanding Sentiment Scores
+The sentiment analysis tool we employed assigns a 'compound score' to each headline, which is a metric that quantifies the sentiment on a scale from -1 (very negative) to +1 (very positive). Neutral news would score around 0. These scores are calculated using algorithms that analyze the language and context of each headline.
+
+### Significance of Sentiment Analysis in Stock Predictions
+Sentiment scores are crucial for our predictive model as they offer a unique insight into the potential impact of public perception on stock prices. Research suggests that positive news can lead to temporary stock price increases, while negative news can cause decreases. By quantifying this sentiment, we aim to incorporate an additional layer of data that can help predict these movements more accurately.
+
+### Challenges in Processing Sentiment Data
+One of the main challenges in using sentiment analysis for stock prediction is ensuring the data's accuracy and relevance. Sentiment scoring is inherently subjective, and different algorithms may interpret the same text differently. To mitigate this, we used a widely recognized sentiment analysis tool designed for financial contexts to ensure that our sentiment scores are as reliable as possible.
+
+### Preprocessing Sentiment Data
+To prepare the sentiment data for analysis, we performed the following:
+
+<li>Date Formatting: The sentiment data timestamps were standardized to ensure they matched the format used in our stock price data, allowing for accurate merging.</li>
+
+<li>Filtering and Cleaning: We filtered out irrelevant data points and cleaned the data to remove any anomalies or incorrect entries, which could skew our analysis.
+By detailing the role and handling of sentiment data in our model, we provide transparency into how these elements are used to forecast stock price movements. This data not only enriches our model but also     introduces a novel angle to traditional financial forecasting methods, combining quantitative financial metrics with qualitative sentiment analysis.</li>
+
+## Concatenation of the Two Datasets
+
+To effectively predict stock price movements, it's essential to merge our sentiment analysis data with traditional financial data. This fusion provides a comprehensive dataset that captures both the numerical trends and the sentiment trends which influence stock movements. Below, we detail the process of aligning and concatenating the Apple Inc. stock data from Yahoo Finance with the sentiment analysis data derived from news headlines.
+
+### Data Alignment
+The primary challenge in merging these datasets is ensuring that each entry of stock data from Yahoo Finance corresponds to an entry of sentiment data from the same date. This alignment is crucial for maintaining the accuracy of our predictive analysis, as any discrepancy in dates could lead to incorrect correlations between market sentiments and stock price movements.
+
+### Standardizing Date Formats
+The first step in our alignment process involves standardizing the date formats across both datasets. In our sentiment analysis dataset, dates were initially formatted inconsistently. To address this, we used the following code snippet to convert all dates to a uniform format:
+
+This ensures that both datasets use the same date format, facilitating an accurate merge.
+
+### Merging Datasets
+
+Once the dates were standardized, we proceeded to merge the datasets. This step is crucial as it combines the sentiment scores with the corresponding stock data, allowing our models to analyze the potential impacts of public sentiment on stock prices concurrently with financial indicators.
+
+#### The merging was executed using the following Python code:
+
+This code snippet uses the pd.merge function from pandas, which joins the datasets on the 'Date' column. We chose an 'inner' join to ensure that only dates present in both datasets are included, eliminating any days where either stock data or sentiment data is missing.
+
+### Challenges and Solutions
+During the concatenation process, we faced several challenges:
+
+<li>Data Discrepancies: There were instances where sentiment data or stock data was missing for certain dates. To handle these discrepancies, our merging strategy automatically excluded dates where data was missing from either source, ensuring the integrity of our analysis.</li>
+
+<li>Data Integrity Checks: Post-merging, we conducted thorough checks to ensure no data corruption had occurred during the merge. This involved verifying sample entries and checking for any anomalies in the merged dataset.</li>
+
+### Final Preparations
+The final dataset now ready for feature engineering and further analysis was confirmed to have all necessary attributes correctly aligned. This dataset forms the backbone of our subsequent analysis where it will be used to train our machine learning models.
+
+The concatenated dataset now includes both quantitative financial data and qualitative sentiment data, providing a holistic view of the factors that may influence Apple's stock prices.
+
+## Feature Engineering and Data Preparation
+
+In this phase of our analysis, we focus on preparing and enriching our data to build a robust model for predicting stock price movements. Feature engineering is crucial as it involves creating predictive variables that capture essential aspects of both market conditions and sentiment dynamics.
+
+### Adding Financial Indicators
+The first step in our feature engineering process involves calculating key financial indicators that are known to influence stock prices:
+
+<li>Relative Strength Index (RSI): This momentum oscillator measures the speed and change of price movements. It helps identify overbought or oversold conditions in the trading of an asset.
+<li>Exponential Moving Averages (EMA): We use three different EMAs to capture trends over various time frames:
+<ul><li>Fast EMA (20 days): Reflects short-term price trends.</li>
+<li>Medium EMA (100 days): Captures medium-term trends.</li>
+<li>Slow EMA (150 days): Indicates long-term market trends.</li></ul>
+
+### Integrating Sentiment Analysis
+Adding a compound variable from sentiment analysis provides a unique dimension to our dataset:
+
+<li>Compound Variable: This score is derived from the sentiment analysis of news headlines and provides a numerical value that summarizes the overall sentiment (positive, negative, or neutral) regarding Apple on each day.</li>
+This integration allows our model to consider how public sentiment might impact stock prices, potentially leading to more accurate predictions.
+
+### Preparing the Target Variable
+For our predictive model, we chose to forecast the actual change in stock price, rather than simply predicting whether the stock price would go up or down. The target variable is thus defined as the difference between the next day’s closing price and the current day’s opening price:
+
+This formulation of the target variable enables us to predict the magnitude of the price change, providing more detailed insights for trading strategies.
+
+### Data Scaling and Splitting
+To ensure that all input features contribute equally to the model's predictions, we scale the data using MinMaxScaler, which normalizes features to a range of -1 to 1:
+
+Finally, the dataset is split into training and testing sets to evaluate the model’s performance on unseen data. This is done to test the model's ability to generalize to new data, which is critical for real-world applications.
+
+### Data Preparation Challenges
+During data preparation, we encountered challenges such as handling missing values and ensuring no lookahead bias in feature engineering. To address these issues, we carefully crafted our data processing steps to maintain the integrity and predictive power of the model.
+
+By detailing the feature engineering and data preparation process, we set the stage for training a sophisticated machine learning model that incorporates both traditional financial indicators and modern sentiment analysis. This blend of features is designed to capture a wide array of influences on stock prices, making our model both robust and insightful.
 
 
