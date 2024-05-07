@@ -180,7 +180,7 @@ This project provided a valuable comparative look at different machine learning 
 
 **Lessons Learned:** One of the key lessons learned was the critical importance of feature selection and data preprocessing. The choice and preparation of features significantly affected the models' ability to learn and make accurate predictions. Additionally, the project reinforced the idea that more complex models, like LSTMs, require careful tuning and extensive training to fully realize their potential.
 
-Future Directions: Future research could explore integrating a broader range of sentiment sources, such as social media platforms, which might provide more comprehensive sentiment data. Additionally, experimenting with hybrid models that combine elements of different neural network architectures could offer improvements in both accuracy and generalization.
+**Future Directions:** Future research could explore integrating a broader range of sentiment sources, such as social media platforms, which might provide more comprehensive sentiment data. Additionally, experimenting with hybrid models that combine elements of different neural network architectures could offer improvements in both accuracy and generalization.
 
 In conclusion, this project has not only advanced our understanding of using machine learning for stock price prediction but also highlighted the intricate interplay between market data and public sentiment. Despite the challenges faced, the insights gained from comparing different machine learning approaches have been invaluable. These findings pave the way for further research and experimentation, potentially leading to more sophisticated and accurate predictive models in the finance sector.
 
